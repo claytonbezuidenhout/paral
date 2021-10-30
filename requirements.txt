@@ -1,0 +1,2 @@
+croniter~=0.3.36
+setuptools~=56.0.0
