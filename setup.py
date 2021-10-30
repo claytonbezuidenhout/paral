@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 __version__ = "0.0.1"
 
-with open('../README.md') as f:
+with open("../README.md") as f:
     readme = f.read()
 
 
@@ -24,5 +24,5 @@ setup(
     classifiers=[
         "Programming Language :: Python :: 3",
     ],
-    python_requires='>=3.8',
+    python_requires=">=3.8",
 )

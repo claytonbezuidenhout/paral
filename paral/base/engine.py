@@ -19,6 +19,7 @@ class ThreadEngine:
     A thread index keeps track of the active threads, this is to prevent duplicate spin up
     of threads in the thread-join loop when new threads are added at runtime instead of startup.
     """
+
     def __init__(self):
         self.threads = {}
         self.thread_index = 0
@@ -39,10 +40,7 @@ class ThreadEngine:
         the wrapped function and its associated args and kwargs.
         """
         self.threads[f"{func.__name__}_{uuid1()}"] = Thread(
-            target=func,
-            args=args,
-            kwargs=kwargs,
-            daemon=True
+            target=func, args=args, kwargs=kwargs, daemon=True
         )
         log.debug(f"created component thread {func.__name__}")
 

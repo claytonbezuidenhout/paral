@@ -34,7 +34,7 @@ class QueueRouter:
     def _setup_pattern_matchers(self):
         if self.rules:
             for rule in self.rules:
-                rule[1] = re.compile(rule[1]) if rule[0] == 'match' else rule[1]
+                rule[1] = re.compile(rule[1]) if rule[0] == "match" else rule[1]
 
     def send(self, payload, func=None):
         if func:
@@ -43,42 +43,56 @@ class QueueRouter:
             send_to_queues = []
             for rule in self.rules:
                 mapped_function_name = rule[2].__name__
-                if (isinstance(payload, int) or isinstance(payload, float)) and rule[0] == 'eq':
+                if (isinstance(payload, int) or isinstance(payload, float)) and rule[
+                    0
+                ] == "eq":
                     if rule[1] == payload:
                         send_to_queues.append(mapped_function_name)
                         if not self.multiplexer:
                             break
-                elif (isinstance(payload, int) or isinstance(payload, float)) and rule[0] == 'gt':
+                elif (isinstance(payload, int) or isinstance(payload, float)) and rule[
+                    0
+                ] == "gt":
                     if payload > rule[1]:
                         send_to_queues.append(mapped_function_name)
                         if not self.multiplexer:
                             break
-                elif (isinstance(payload, int) or isinstance(payload, float)) and rule[0] == 'gteq':
+                elif (isinstance(payload, int) or isinstance(payload, float)) and rule[
+                    0
+                ] == "gteq":
                     if payload >= rule[1]:
                         send_to_queues.append(mapped_function_name)
                         if not self.multiplexer:
                             break
-                elif (isinstance(payload, int) or isinstance(payload, float)) and rule[0] == 'lt':
+                elif (isinstance(payload, int) or isinstance(payload, float)) and rule[
+                    0
+                ] == "lt":
                     if payload < rule[1]:
                         send_to_queues.append(mapped_function_name)
                         if not self.multiplexer:
                             break
-                elif (isinstance(payload, int) or isinstance(payload, float)) and rule[0] == 'lteq':
+                elif (isinstance(payload, int) or isinstance(payload, float)) and rule[
+                    0
+                ] == "lteq":
                     if rule[1] <= payload:
                         send_to_queues.append(mapped_function_name)
                         if not self.multiplexer:
                             break
-                elif (isinstance(payload, int) or isinstance(payload, float)) and rule[0] == 'neq':
+                elif (isinstance(payload, int) or isinstance(payload, float)) and rule[
+                    0
+                ] == "neq":
                     if rule[1] != payload:
                         send_to_queues.append(mapped_function_name)
                         if not self.multiplexer:
                             break
-                elif (isinstance(payload, int) or isinstance(payload, float)) and rule[0] == 'range':
+                elif (isinstance(payload, int) or isinstance(payload, float)) and rule[
+                    0
+                ] == "range":
                     if rule[1][0] <= payload >= rule[1][1]:
                         send_to_queues.append(mapped_function_name)
                         if not self.multiplexer:
                             break
-                elif isinstance(payload, str) and rule[0] == 'match':
+                elif isinstance(payload, str) and rule[0] == "match":
                     if rule[1].match(payload):
                         send_to_queues.append(mapped_function_name)
                         if not self.multiplexer:
@@ -89,6 +103,3 @@ class QueueRouter:
                     self.queues[queue].put(payload)
             else:
                 log.warn(f"No router rule match on data: {payload}")
-
-
-

@@ -20,12 +20,13 @@ def run_at_intervals(interval_seconds=1, repeat_times=-1, keep_alive=True):
     def inner_wrapper(func: Callable):
         def wrapper(*args, **kwargs):
             def interval_build_func(*_args, **_kwargs):
-                repeates_left = [i for i in range(
-                    repeat_times)] if repeat_times > 0 else None
+                repeats_left = (
+                    [i for i in range(repeat_times)] if repeat_times > 0 else None
+                )
 
                 def run():
                     try:
-                        repeates_left.pop() if repeat_times != -1 else ...
+                        repeats_left.pop() if repeat_times != -1 else ...
                         func(*_args, **_kwargs)
                         sleep(interval_seconds)
                     except Exception as e:
@@ -35,7 +36,7 @@ def run_at_intervals(interval_seconds=1, repeat_times=-1, keep_alive=True):
 
                 while True:
                     if repeat_times != -1:
-                        if len(repeates_left) > 0:
+                        if len(repeats_left) > 0:
                             run()
                         else:
                             break
@@ -51,9 +52,7 @@ def run_at_intervals(interval_seconds=1, repeat_times=-1, keep_alive=True):
 
 def cron_job(cron=None, interval_seconds=1):
     def inner_wrapper(func: Callable):
-
         def wrapper(*args, **kwargs):
-
             def cron_job_run_func(*_args, **_kwargs):
                 base = datetime.now()
                 cron_itr = croniter(cron, base)

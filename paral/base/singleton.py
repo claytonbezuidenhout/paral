@@ -1,4 +1,3 @@
-
 class Singleton:
     """
     A Non thread safe helper class to for implementing singletons.
@@ -9,7 +8,6 @@ class Singleton:
 
     To get a singleton instance, use the `instance` method.
     Directly instantiating via `__call__` will raise a `TypeError`.
-
     """
 
     def __init__(self, decorated):
@@ -28,7 +26,7 @@ class Singleton:
             return self._instance
 
     def __call__(self):
-        raise TypeError('Singleton must be instantiated using `instance()` method.')
+        raise TypeError("Singleton must be instantiated using `instance()` method.")
 
     def __instancecheck__(self, inst):
         return isinstance(inst, self._decorated)
