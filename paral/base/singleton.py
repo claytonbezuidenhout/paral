@@ -16,7 +16,7 @@ class Singleton:
     def instance(self):
         """
         Returns the singleton instance.
-        At first call it creates a new instance, every concequent call
+        At first call it creates a new instance, every consequent call
         returns the initial object created on first access.
         """
         try:
