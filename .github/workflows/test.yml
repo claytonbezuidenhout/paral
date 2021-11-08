@@ -16,12 +16,14 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
+        cd /github/workspace
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -r test-requirements.txt
       working-directory: /github/workspace
     - name: Run unit tests and code coverage
       run: |
+        cd /github/workspace
         python -m coverage run  -m unittest discover -s test
         python -m coverage report
-      working-directory: /github/workspace
+
